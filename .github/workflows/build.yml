@@ -27,10 +27,13 @@ jobs:
 
       - name: Accept Android SDK Licenses & Build
         run: |
-          yes | buildozer -v android debug
+          mkdir -p ~/.android
+          touch ~/.android/repositories.cfg
+          buildozer -v android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: bin/*.apk
+          
